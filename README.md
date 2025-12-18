@@ -1,4 +1,4 @@
-# <h1 align="center">jQuery - File Upload Plugin 📤</h1> 
+# <h1 align="center">jQuery - File Upload Plugin 📤</h1>
 
 <p align="center">It is a simple jQuery plugin that allows file uploading, viewing and deleting operations.</p>
 
@@ -12,16 +12,12 @@
   <li>🗑 Uploaded files can be deleted</li>
 </ul>
 
-## 💻 Live Demo
-
-Check the live demo here 👉 [Demo](https://file-upload-kaderbrl.vercel.app/) 
-
 ## 📋 Instruction
 
 Clone this repository.
 
 ```shell
-git clone https://github.com/kaderbrl/file-upload-jQuery.git
+git clone https://github.com/samiulislamsharan/file-upload-jQuery.git
 ```
 
 Usage:
@@ -35,6 +31,10 @@ $(document).ready(function () {
     $("#fileUpload").fileUpload();
 });
 ```
+
+## 💻 Live Demo
+
+Check the live demo here 👉 [Demo](https://kaderbrl.github.io/file-upload-jQuery/) 
 
 ## Languages and Tools
 
