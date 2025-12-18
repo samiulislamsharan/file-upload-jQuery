@@ -10,13 +10,14 @@
             var fileDivContent = `
                 <label for="${fileUploadId}" class="file-upload">
                     <div>
-                        <i class="material-icons-outlined">cloud_upload</i>
+                        <i class="fa-solid fa-cloud-arrow-up"></i>
                         <p>Drag & Drop Files Here</p>
                         <span>OR</span>
                         <div>Browse Files</div>
                     </div>
-                    <input type="file" id="${fileUploadId}" name=[] multiple hidden />
+                    <input type="file" id="${fileUploadId}" name=file[] multiple hidden />
                 </label>
+                <div id="existing-files"></div>
             `;
 
             fileUploadDiv.html(fileDivContent).addClass("file-container");
@@ -27,6 +28,7 @@
             function createTable() {
                 table = $(`
                     <table>
+                        <h4 class="text-center mt-4">Selected Image(s)</h4>
                         <thead>
                             <tr>
                                 <th></th>
@@ -34,7 +36,7 @@
                                 <th>Preview</th>
                                 <th style="width: 20%;">Size</th>
                                 <th>Type</th>
-                                <th></th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -59,8 +61,10 @@
                         var fileSize = (file.size / 1024).toFixed(2) + " KB";
                         var fileType = file.type;
                         var preview = fileType.startsWith("image")
-                            ? `<img src="${URL.createObjectURL(file)}" alt="${fileName}" height="30">`
-                            : `<i class="material-icons-outlined">visibility_off</i>`;
+                            ? `<img src="${URL.createObjectURL(
+                                  file
+                              )}" alt="${fileName}" height="100">`
+                            : `<i class="fa-solid fa-eye-slash"></i>`;
 
                         tableBody.append(`
                             <tr>
@@ -69,7 +73,7 @@
                                 <td>${preview}</td>
                                 <td>${fileSize}</td>
                                 <td>${fileType}</td>
-                                <td><button type="button" class="deleteBtn"><i class="material-icons-outlined">delete</i></button></td>
+                                <td><button type="button" class="deleteBtn"><i class="fas fa-trash-alt"></i></button></td>
                             </tr>
                         `);
                     });
@@ -78,7 +82,9 @@
                         $(this).closest("tr").remove();
 
                         if (tableBody.find("tr").length === 0) {
-                            tableBody.append('<tr><td colspan="6" class="no-file">No files selected!</td></tr>');
+                            tableBody.append(
+                                '<tr><td colspan="6" class="no-file">No files selected!</td></tr>'
+                            );
                         }
                     });
                 }
@@ -88,7 +94,10 @@
             fileUploadDiv.on({
                 dragover: function (e) {
                     e.preventDefault();
-                    fileUploadDiv.toggleClass("dragover", e.type === "dragover");
+                    fileUploadDiv.toggleClass(
+                        "dragover",
+                        e.type === "dragover"
+                    );
                 },
                 drop: function (e) {
                     e.preventDefault();
